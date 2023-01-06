@@ -13,7 +13,14 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/common/*": ["common/*"],
+      "@/epic/*": ["epic/*"],
+      "@/pages/*": ["pages/*"],
+      "@/forms/*": ["epic/forms/*"]
+    }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
