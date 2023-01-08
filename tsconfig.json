@@ -19,7 +19,9 @@
       "@/common/*": ["common/*"],
       "@/epic/*": ["epic/*"],
       "@/pages/*": ["pages/*"],
-      "@/forms/*": ["epic/forms/*"]
+      "@/forms/*": ["epic/forms/*"],
+      "@/data/*": ["data/*"],
+      "@/fetch/*": ["utils/fetch/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
