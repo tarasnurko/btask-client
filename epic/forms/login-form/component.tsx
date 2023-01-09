@@ -1,18 +1,17 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-
-import axios, { AxiosError } from "axios";
 import { useMutation } from "react-query";
 
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Space, message } from "antd";
 
 import { emailRules, passwordRules } from "./rules";
-import { IError, IForm, loginUrl } from "./data";
-import { IAuthRes } from "../../../data/auth";
+import { LoginError, LoginForm } from "./data";
+import { AuthRes } from "../../../data/auth";
+import { login } from "@/fetch/index";
 
-const initialValues: IForm = {
+const initialValues: LoginForm = {
   email: "",
   password: "",
 };
@@ -28,29 +27,28 @@ const layout = {
   },
 };
 
-const login = async (data: IForm): Promise<any> => {
-  return await axios.post(loginUrl, data, { withCredentials: true });
-};
-
 const Component: React.FC = () => {
   const router = useRouter();
   const [messageApi, contextHolder] = message.useMessage();
 
-  const onError = (error: IError) => {
+  const onError = (error: LoginError) => {
     messageApi.open({
       type: "error",
       content: error?.response?.data.message,
     });
   };
 
-  const { mutate, isLoading } = useMutation<IAuthRes, IError, IForm>(login, {
-    onSuccess: () => {
-      router.push("/");
-    },
-    onError,
-  });
+  const { mutate, isLoading } = useMutation<AuthRes, LoginError, LoginForm>(
+    login,
+    {
+      onSuccess: () => {
+        router.push("/");
+      },
+      onError,
+    }
+  );
 
-  const handleSubmit = async (values: IForm) => {
+  const handleSubmit = async (values: LoginForm) => {
     mutate(values);
   };
 

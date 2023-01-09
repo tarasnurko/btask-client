@@ -1,13 +1,15 @@
-import { Lead } from "@/data/leads";
+import { Lead } from "@/data/lead";
 import axios from "axios";
 
-interface FetchLeads {
+interface GetLeads {
   jwt: string;
 }
 
-export const fetchLeads = async ({ jwt }: FetchLeads): Promise<Lead[]> => {
+const url = "http://127.0.0.1:8080/api/leads";
+
+export const getLeads = async ({ jwt }: GetLeads): Promise<Lead[]> => {
   const data: Lead[] = await axios
-    .get("http://127.0.0.1:8080/api/leads", {
+    .get(url, {
       withCredentials: true,
       headers: {
         Cookie: `jwt=${jwt}`,

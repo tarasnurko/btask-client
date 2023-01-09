@@ -8,15 +8,13 @@ import { Button, Space } from "antd";
 import { BaseLayout } from "@/epic/layouts/base-layout";
 import { LeadsTable } from "@/epic/leads/leads-table";
 
-import { fetchLeads } from "@/fetch/leads/fetchLeads";
+import { getLeads } from "@/fetch/leads/getLeads";
 
-import { Lead } from "@/data/leads";
+import { Lead } from "@/data/lead";
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  // const leads: Lead[] = await fetchLeads({ jwt: req.cookies.jwt });
-
   try {
-    const leads = await fetchLeads({ jwt: `${req.cookies.jwt}` });
+    const leads = await getLeads({ jwt: `${req.cookies.jwt}` });
 
     return {
       props: {
@@ -62,7 +60,7 @@ const Home: NextPage<Props> = ({ leads }) => {
   return (
     <BaseLayout title="Leads">
       <Space direction="vertical" style={{ width: "100%" }}>
-        <Link href="/tasks/create">
+        <Link href="/leads/create">
           <Button type="primary" block ghost>
             Add Lead
           </Button>

@@ -7,7 +7,7 @@ import type { ColumnsType } from "antd/es/table";
 
 import { deleteLead } from "@/fetch/index";
 
-import { Lead } from "@/data/leads";
+import { Lead } from "@/data/lead";
 
 interface Props {
   leads: Lead[];

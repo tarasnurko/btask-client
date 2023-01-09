@@ -1,4 +1,4 @@
-export interface IAuthRes {
+export interface AuthRes {
   id: number;
   email: string;
   token: string;

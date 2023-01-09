@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Lead } from "@/data/leads";
+import { Lead } from "@/data/lead";
 import { useQuery } from "react-query";
 
 // interface UseLeads {
