@@ -88,7 +88,6 @@ const Component: React.FC<Props> = ({ leads }) => {
       scroll={{ x: true }}
     />
   );
-  // return <div>df</div>;
 };
 
 export default Component;

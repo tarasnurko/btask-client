@@ -1,6 +1,7 @@
 import { Lead } from "@/data/lead";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
+export type GetNextTasksError = AxiosError<{ message?: string }>;
 interface GetLeads {
   jwt: string;
 }

@@ -8,6 +8,4 @@ export const middleware: NextMiddleware = (req: NextRequest) => {
   }
 
   return NextResponse.redirect("/auth/login");
-
-  console.log("df");
 };

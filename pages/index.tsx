@@ -6,7 +6,7 @@ import axios, { AxiosError } from "axios";
 import { Button, Space } from "antd";
 
 import { BaseLayout } from "@/epic/layouts/base-layout";
-import { LeadsTable } from "@/epic/leads/leads-table";
+import { LeadsTable } from "@/epic/tables/leads-table";
 
 import { getLeads } from "@/fetch/leads/getLeads";
 
@@ -39,17 +39,6 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
       notFound: true,
     };
   }
-
-  // const queryClient = new QueryClient();
-  // await queryClient.prefetchQuery({
-  //   queryKey: ["leads"],
-  //   queryFn: fetchLeads,
-  // });
-  // return {
-  //   props: {
-  //     dehydratedState: dehydrate(queryClient),
-  //   },
-  // };
 };
 
 interface Props {
