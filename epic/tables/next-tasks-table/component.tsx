@@ -84,7 +84,7 @@ const Component: React.FC = () => {
           okButtonProps={{ type: "primary" }}
           onConfirm={() => handleMake(record.id)}
         >
-          <Button type="primary" ghost loading={isUpdating}>
+          <Button type="primary" ghost>
             Make
           </Button>
         </Popconfirm>
@@ -102,7 +102,7 @@ const Component: React.FC = () => {
           okButtonProps={{ danger: true }}
           onConfirm={() => handleDelete(record.id)}
         >
-          <Button danger ghost loading={isUpdating}>
+          <Button danger ghost>
             Delete
           </Button>
         </Popconfirm>
@@ -133,19 +133,13 @@ const Component: React.FC = () => {
   ];
 
   return (
-    <>
-      {!tasksIsLoading && (
-        <Table
-          columns={columns}
-          dataSource={tasks}
-          rowKey="id"
-          scroll={{ x: true }}
-        />
-      )}
-      {tasksIsLoading && (
-        <Spin tip="Loading" size="large" style={{ paddingTop: "80px" }} />
-      )}
-    </>
+    <Table
+      columns={columns}
+      dataSource={tasks}
+      rowKey="id"
+      scroll={{ x: true }}
+      loading={tasksIsLoading || isUpdating}
+    />
   );
 };
 

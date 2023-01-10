@@ -1,9 +1,12 @@
+// Auth
 export { login } from "./auth/login";
 
+// Leads
 export { getLeads } from "./leads/getLeads";
 export { createLead } from "./leads/createLead";
 export { deleteLead } from "./leads/deleteLead";
 
+// Tasks
 export { getNextTasks } from "./tasks/getNextTasks";
 export type {
   GetNextTasks,
@@ -13,3 +16,9 @@ export type {
 
 export { updateTask, TaskUpdateStatus } from "./tasks/updateTask";
 export type { UpdateTask, UpdateTaskError } from "./tasks/updateTask";
+
+// Scripts
+export { getScripts } from "./scripts/getScripts";
+export type { GetScripts, GetScriptsError } from "./scripts/getScripts";
+
+// Analytics
