@@ -60,14 +60,6 @@ const Component: React.FC<IProps> = ({ children, title }) => {
       <Sider breakpoint="lg" collapsedWidth="0" style={{ paddingTop: "20px" }}>
         <Menu theme="dark" mode="inline" items={items} />
       </Sider>
-      {/* <Layout style={{ padding: "30px 40px 20px 40px", minWidth: "300px" }}>
-        <Title>{title}</Title>
-        <Layout>
-          <Row>
-            <Col xs={{offset: 2, span: 22}} style={{minWidth: '300px'}}>{children}</Col>
-          </Row>
-        </Layout>
-      </Layout> */}
       <Layout>
         <Row>
           <Col

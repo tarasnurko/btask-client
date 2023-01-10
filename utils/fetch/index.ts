@@ -28,3 +28,9 @@ export { deleteScript } from "./scripts/deleteScript";
 export type { DeleteScriptError } from "./scripts/deleteScript";
 
 // Analytics
+export { getFailureTasksAnalytics } from "./analytics/getFailureTasksAnalytics";
+export type {
+  GetFailureTasksAnalytics,
+  GetFailureTasksAnalyticsError,
+  GetFailureTasksAnalyticsRes,
+} from "./analytics/getFailureTasksAnalytics";
