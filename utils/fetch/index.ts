@@ -21,4 +21,10 @@ export type { UpdateTask, UpdateTaskError } from "./tasks/updateTask";
 export { getScripts } from "./scripts/getScripts";
 export type { GetScripts, GetScriptsError } from "./scripts/getScripts";
 
+export { createScript } from "./scripts/createScript";
+export type { CreateScript, CreateScriptError } from "./scripts/createScript";
+
+export { deleteScript } from "./scripts/deleteScript";
+export type { DeleteScriptError } from "./scripts/deleteScript";
+
 // Analytics

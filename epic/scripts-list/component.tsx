@@ -1,6 +1,12 @@
 import { Script, ScriptSource } from "@/data/script";
-import { getScripts, GetScripts, GetScriptsError } from "@/fetch/index";
-import { deleteScript, DeleteScriptError } from "@/fetch/scripts/deleteScript";
+import {
+  getScripts,
+  GetScripts,
+  GetScriptsError,
+  deleteScript,
+  DeleteScriptError,
+} from "@/fetch/index";
+
 import {
   Button,
   Divider,
@@ -53,8 +59,6 @@ const Component: React.FC = () => {
     mutate(scriptId);
   };
 
-  console.log(scripts);
-
   const upworkScrpts = useMemo(() => {
     return scripts?.filter((script) => script.source === ScriptSource.Upwork);
   }, [scripts]);
@@ -98,16 +102,19 @@ const Component: React.FC = () => {
       {contextHolder}
       <Space direction="vertical" style={{ width: "100%" }}>
         <List
+          loading={isDeleting}
           header={<Title level={3}>Upwork</Title>}
           dataSource={upworkScrpts}
           renderItem={renderItem}
         />
         <List
+          loading={isDeleting}
           header={<Title level={3}>Telegram</Title>}
           dataSource={telegramScripts}
           renderItem={renderItem}
         />
         <List
+          loading={isDeleting}
           header={<Title level={3}>Linkedin</Title>}
           dataSource={linkedinScripts}
           renderItem={renderItem}
