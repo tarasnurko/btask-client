@@ -1,42 +1,28 @@
 import { GetServerSideProps, NextPage } from "next";
+import Link from "next/link";
+import { dehydrate, DehydratedState, QueryClient } from "react-query";
+
+import { Button, Space } from "antd";
 
 import { BaseLayout } from "@/epic/layouts/base-layout";
-
-import { dehydrate, QueryClient } from "react-query";
-
-import { getScripts } from "@/fetch/index";
-import { Button, Space } from "antd";
-import Link from "next/link";
 import { ScriptsList } from "@/epic/scripts-list";
+import { catchAuth } from "@/utils/server";
+import { getScripts } from "@/fetch/index";
 
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  try {
-    if (!req.cookies.jwt) {
-      return {
-        redirect: {
-          destination: "/auth/login",
-          permanent: false,
-        },
-      };
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  return await catchAuth<{ dehydratedState: DehydratedState }>(
+    context,
+    async (jwt) => {
+      const queryClient = new QueryClient();
+
+      queryClient.prefetchQuery({
+        queryKey: ["scripts"],
+        queryFn: () => getScripts({ jwt }),
+      });
+
+      return { dehydratedState: dehydrate(queryClient) };
     }
-
-    const queryClient = new QueryClient();
-
-    queryClient.prefetchQuery({
-      queryKey: ["scripts"],
-      queryFn: () => getScripts({ jwt: `${req.cookies?.jwt}` }),
-    });
-
-    return {
-      props: {
-        dehydratedState: dehydrate(queryClient),
-      },
-    };
-  } catch (err) {
-    return {
-      props: {},
-    };
-  }
+  );
 };
 
 const Scripts: NextPage = () => {

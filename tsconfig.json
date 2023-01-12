@@ -16,12 +16,12 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/common/*": ["common/*"],
       "@/epic/*": ["epic/*"],
       "@/pages/*": ["pages/*"],
       "@/forms/*": ["epic/forms/*"],
       "@/data/*": ["data/*"],
-      "@/fetch/*": ["utils/fetch/*"]
+      "@/fetch/*": ["utils/fetch/*"],
+      "@/utils/*": ["utils/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

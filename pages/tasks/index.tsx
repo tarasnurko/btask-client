@@ -1,39 +1,25 @@
 import { GetServerSideProps, NextPage } from "next";
-
-import { dehydrate, QueryClient } from "react-query";
+import { dehydrate, DehydratedState, QueryClient } from "react-query";
 
 import { BaseLayout } from "@/epic/layouts/base-layout";
 import { getNextTasks } from "@/fetch/index";
 import { NextTasksTable } from "@/epic/tables/next-tasks-table";
+import { catchAuth } from "@/utils/server";
 
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  try {
-    if (!req.cookies.jwt) {
-      return {
-        redirect: {
-          destination: "/auth/login",
-          permanent: false,
-        },
-      };
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  return await catchAuth<{ dehydratedState: DehydratedState }>(
+    context,
+    async (jwt) => {
+      const queryClient = new QueryClient();
+
+      queryClient.prefetchQuery({
+        queryKey: ["nextTasks"],
+        queryFn: () => getNextTasks({ jwt }),
+      });
+
+      return { dehydratedState: dehydrate(queryClient) };
     }
-
-    const queryClient = new QueryClient();
-
-    queryClient.prefetchQuery({
-      queryKey: ["tasks"],
-      queryFn: () => getNextTasks({ jwt: `${req.cookies?.jwt}` }),
-    });
-
-    return {
-      props: {
-        dehydratedState: dehydrate(queryClient),
-      },
-    };
-  } catch (err) {
-    return {
-      props: {},
-    };
-  }
+  );
 };
 
 const Tasks: NextPage = () => {

@@ -1,0 +1,1 @@
+export { catchAuth } from "./catchAuth";

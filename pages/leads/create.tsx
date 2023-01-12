@@ -1,20 +1,11 @@
-import { GetServerSidePropsContext, NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
 
 import { BaseLayout } from "@/epic/layouts/base-layout";
 import { CreateLeadForm } from "@/epic/forms/create-lead-form";
+import { catchAuth } from "@/utils/server";
 
-export const getServerSideProps = ({ req }: GetServerSidePropsContext) => {
-  if (!req.cookies.jwt) {
-    return {
-      redirect: {
-        destination: "/auth/login",
-        permanent: false,
-      },
-    };
-  }
-  return {
-    props: {},
-  };
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  return await catchAuth(context);
 };
 
 const CreateLead: NextPage = () => {

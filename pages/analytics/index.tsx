@@ -1,52 +1,23 @@
 import { GetServerSideProps, NextPage } from "next";
 
-import { AxiosError } from "axios";
-
 import { BaseLayout } from "@/epic/layouts/base-layout";
 import {
   getFailureTasksAnalytics,
   GetFailureTasksAnalyticsRes,
 } from "@/fetch/index";
 import { FailureTasksAnalytics } from "@/epic/failure-tasks-analytics";
+import { catchAuth } from "@/utils/server";
 
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  try {
-    if (!req.cookies.jwt) {
-      return {
-        redirect: {
-          destination: "/auth/login",
-          permanent: false,
-        },
-      };
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  return await catchAuth<{ analytics: GetFailureTasksAnalyticsRes }>(
+    context,
+    async (jwt) => {
+      const analytics = await getFailureTasksAnalytics({
+        jwt,
+      });
+      return { analytics };
     }
-
-    const analytics = await getFailureTasksAnalytics({
-      jwt: req.cookies.jwt,
-    });
-
-    return {
-      props: {
-        analytics,
-      },
-    };
-  } catch (err: unknown) {
-    if (
-      err instanceof AxiosError &&
-      err.response &&
-      err.response.data.statusCode === 401
-    ) {
-      return {
-        redirect: {
-          destination: "/auth/login",
-          permanent: false,
-        },
-      };
-    }
-
-    return {
-      notFound: true,
-    };
-  }
+  );
 };
 
 interface Props {
