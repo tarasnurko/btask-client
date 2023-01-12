@@ -10,6 +10,7 @@ import {
   CodeOutlined,
   PercentageOutlined,
 } from "@ant-design/icons";
+import { useRouter } from "next/router";
 
 const { Header, Footer, Sider, Content } = Layout;
 const { Title } = Typography;
@@ -49,6 +50,15 @@ interface IProps {
 }
 
 const Component: React.FC<IProps> = ({ children, title }) => {
+  const router = useRouter();
+
+  const getSelectedKeys = () => {
+    if (router.pathname === "/") return ["1"];
+    if (router.pathname === "/tasks") return ["2"];
+    if (router.pathname === "/scripts") return ["3"];
+    if (router.pathname === "/analytics") return ["4"];
+  };
+
   return (
     <Layout style={{ minHeight: "100%" }}>
       <Head>
@@ -58,7 +68,12 @@ const Component: React.FC<IProps> = ({ children, title }) => {
       </Head>
 
       <Sider breakpoint="lg" collapsedWidth="0" style={{ paddingTop: "20px" }}>
-        <Menu theme="dark" mode="inline" items={items} />
+        <Menu
+          theme="dark"
+          mode="inline"
+          items={items}
+          selectedKeys={getSelectedKeys()}
+        />
       </Sider>
       <Layout>
         <Row>
