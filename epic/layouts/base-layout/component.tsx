@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 import { Col, Layout, Menu, MenuProps, Row, Typography } from "antd";
 
@@ -10,9 +11,8 @@ import {
   CodeOutlined,
   PercentageOutlined,
 } from "@ant-design/icons";
-import { useRouter } from "next/router";
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Sider } = Layout;
 const { Title } = Typography;
 
 type MenuItem = Required<MenuProps>["items"][number];

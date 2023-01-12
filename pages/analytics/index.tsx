@@ -1,16 +1,8 @@
-import Link from "next/link";
 import { GetServerSideProps, NextPage } from "next";
 
-import axios, { AxiosError } from "axios";
-
-import { Button, Space } from "antd";
+import { AxiosError } from "axios";
 
 import { BaseLayout } from "@/epic/layouts/base-layout";
-import { LeadsTable } from "@/epic/tables/leads-table";
-
-import { getLeads } from "@/fetch/leads/getLeads";
-
-import { Lead } from "@/data/lead";
 import {
   getFailureTasksAnalytics,
   GetFailureTasksAnalyticsRes,
@@ -19,8 +11,17 @@ import { FailureTasksAnalytics } from "@/epic/failure-tasks-analytics";
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   try {
+    if (!req.cookies.jwt) {
+      return {
+        redirect: {
+          destination: "/auth/login",
+          permanent: false,
+        },
+      };
+    }
+
     const analytics = await getFailureTasksAnalytics({
-      jwt: `${req.cookies.jwt}`,
+      jwt: req.cookies.jwt,
     });
 
     return {

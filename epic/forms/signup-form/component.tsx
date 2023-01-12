@@ -6,10 +6,10 @@ import { Button, Form, Input, Space, message } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 
 import { emailRules, passwordRules } from "./rules";
-import { Login, login, LoginError } from "@/fetch/index";
+import { signup, LoginError, Signup, SignupError } from "@/fetch/index";
 import { Auth } from "@/data/auth";
 
-const initialValues: Login = {
+const initialValues: Signup = {
   email: "",
   password: "",
 };
@@ -36,14 +36,14 @@ const Component: React.FC = () => {
     });
   };
 
-  const { mutate, isLoading } = useMutation<Auth, LoginError, Login>(login, {
+  const { mutate, isLoading } = useMutation<Auth, SignupError, Signup>(signup, {
     onSuccess: () => {
       router.push("/");
     },
     onError,
   });
 
-  const handleSubmit = async (values: Login) => {
+  const handleSubmit = async (values: Signup) => {
     mutate(values);
   };
 
@@ -73,7 +73,7 @@ const Component: React.FC = () => {
             <Button type="primary" htmlType="submit" loading={isLoading}>
               Log in
             </Button>
-            <Link href="./signup">Or Sign up now!</Link>
+            <Link href="./login">Or login now!</Link>
           </Space>
         </Form.Item>
       </Form>

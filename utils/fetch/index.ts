@@ -1,5 +1,9 @@
 // Auth
 export { login } from "./auth/login";
+export type { Login, LoginError } from "./auth/login";
+
+export { signup } from "./auth/signup";
+export type { Signup, SignupError } from "./auth/signup";
 
 // Leads
 export { getLeads } from "./leads/getLeads";

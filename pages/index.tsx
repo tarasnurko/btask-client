@@ -1,20 +1,26 @@
 import Link from "next/link";
 import { GetServerSideProps, NextPage } from "next";
 
-import axios, { AxiosError } from "axios";
-
+import { AxiosError } from "axios";
 import { Button, Space } from "antd";
 
 import { BaseLayout } from "@/epic/layouts/base-layout";
 import { LeadsTable } from "@/epic/tables/leads-table";
-
 import { getLeads } from "@/fetch/leads/getLeads";
-
 import { Lead } from "@/data/lead";
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   try {
-    const leads = await getLeads({ jwt: `${req.cookies.jwt}` });
+    if (!req.cookies.jwt) {
+      return {
+        redirect: {
+          destination: "/auth/login",
+          permanent: false,
+        },
+      };
+    }
+
+    const leads = await getLeads({ jwt: req.cookies.jwt });
 
     return {
       props: {
@@ -54,7 +60,6 @@ const Home: NextPage<Props> = ({ leads }) => {
             Add Lead
           </Button>
         </Link>
-
         <LeadsTable leads={leads} />
       </Space>
     </BaseLayout>

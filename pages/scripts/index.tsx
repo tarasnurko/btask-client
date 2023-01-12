@@ -11,6 +11,15 @@ import { ScriptsList } from "@/epic/scripts-list";
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   try {
+    if (!req.cookies.jwt) {
+      return {
+        redirect: {
+          destination: "/auth/login",
+          permanent: false,
+        },
+      };
+    }
+
     const queryClient = new QueryClient();
 
     queryClient.prefetchQuery({
