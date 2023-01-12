@@ -66,7 +66,13 @@ const Component: React.FC = () => {
       return { previousTasks };
     },
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ["leadTasks", leadId] });
+      queryClient.invalidateQueries({
+        queryKey: ["leadTasks", leadId],
+      });
+
+      queryClient.invalidateQueries({
+        queryKey: ["nextTasks"],
+      });
     },
     onError,
   });

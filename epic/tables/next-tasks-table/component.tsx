@@ -36,7 +36,7 @@ const Component: React.FC = () => {
     GetNextTasksRes[],
     any
   >({
-    queryKey: ["tasks"],
+    queryKey: ["nextTasks"],
     queryFn: getNextTasks,
   });
 
@@ -45,8 +45,9 @@ const Component: React.FC = () => {
     UpdateTaskError,
     UpdateTask
   >(updateTask, {
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["tasks"] });
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["nextTasks"] });
+      queryClient.invalidateQueries({ queryKey: ["leadTask", data.leadId] });
     },
     onError,
   });
