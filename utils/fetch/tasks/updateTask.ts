@@ -21,7 +21,7 @@ export const updateTask = async ({
   taskId,
 }: UpdateTask): Promise<Task> => {
   return await axios
-    .post(
+    .patch(
       `${url}/${taskId}`,
       {
         status,

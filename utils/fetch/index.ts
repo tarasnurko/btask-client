@@ -6,6 +6,15 @@ export { getLeads } from "./leads/getLeads";
 export { createLead } from "./leads/createLead";
 export { deleteLead } from "./leads/deleteLead";
 
+export { getLeadTasks } from "./leads/getLeadTasks";
+export type { GetLeadTasks, GetLeadTasksError } from "./leads/getLeadTasks";
+
+export { changeLeadTasks } from "./leads/changeLeadTasks";
+export type {
+  ChangeLeadTasks,
+  ChangeLeadTasksError,
+} from "./leads/changeLeadTasks";
+
 // Tasks
 export { getNextTasks } from "./tasks/getNextTasks";
 export type {

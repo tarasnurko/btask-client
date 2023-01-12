@@ -10,8 +10,6 @@ interface Props {
 }
 
 const Component: React.FC<Props> = ({ analytics }) => {
-  console.log(analytics);
-
   return (
     <Space direction="vertical" style={{ width: "100%" }}>
       {analytics.failures.map((failure, index) => (
