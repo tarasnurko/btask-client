@@ -71,7 +71,7 @@ const Component: React.FC = () => {
         <Form.Item>
           <Space>
             <Button type="primary" htmlType="submit" loading={isLoading}>
-              Log in
+              Sign up
             </Button>
             <Link href="./login">Or login now!</Link>
           </Space>
