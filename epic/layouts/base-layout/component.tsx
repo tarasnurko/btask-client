@@ -10,7 +10,10 @@ import {
   ScheduleOutlined,
   CodeOutlined,
   PercentageOutlined,
+  LogoutOutlined,
 } from "@ant-design/icons";
+import { useMutation } from "react-query";
+import { logout } from "@/fetch/index";
 
 const { Sider } = Layout;
 const { Title } = Typography;
@@ -33,17 +36,6 @@ function getItem(
   } as MenuItem;
 }
 
-const items: MenuProps["items"] = [
-  getItem(<Link href="/">Leads</Link>, "1", <ContactsOutlined />),
-  getItem(<Link href="/tasks">Tasks</Link>, "2", <ScheduleOutlined />),
-  getItem(<Link href="/scripts">Scripts</Link>, "3", <CodeOutlined />),
-  getItem(
-    <Link href="/analytics">Analytics</Link>,
-    "4",
-    <PercentageOutlined />
-  ),
-];
-
 interface IProps {
   children: React.ReactNode;
   title: string;
@@ -52,12 +44,35 @@ interface IProps {
 const Component: React.FC<IProps> = ({ children, title }) => {
   const router = useRouter();
 
+  const { mutate } = useMutation(logout);
+
+  const handleLogout = () => {
+    mutate();
+    router.push("/auth/login");
+  };
+
   const getSelectedKeys = () => {
     if (router.pathname === "/") return ["1"];
     if (router.pathname === "/tasks") return ["2"];
     if (router.pathname === "/scripts") return ["3"];
     if (router.pathname === "/analytics") return ["4"];
   };
+
+  const items: MenuProps["items"] = [
+    getItem(<Link href="/">Leads</Link>, "1", <ContactsOutlined />),
+    getItem(<Link href="/tasks">Tasks</Link>, "2", <ScheduleOutlined />),
+    getItem(<Link href="/scripts">Scripts</Link>, "3", <CodeOutlined />),
+    getItem(
+      <Link href="/analytics">Analytics</Link>,
+      "4",
+      <PercentageOutlined />
+    ),
+    getItem(
+      <span onClick={handleLogout}>Logout</span>,
+      "5",
+      <LogoutOutlined />
+    ),
+  ];
 
   return (
     <Layout style={{ minHeight: "100%" }}>

@@ -1,5 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { Auth } from "@/data/auth";
+import { baseUrl } from "../";
 
 export type LoginError = AxiosError<{ message: string }>;
 
@@ -8,7 +9,7 @@ export interface Login {
   password: string;
 }
 
-const url = "http://127.0.0.1:8080/api/auth/login";
+const url = `${baseUrl}/auth/login`;
 
 export const login = async (data: Login): Promise<Auth> => {
   return await axios.post(url, data, { withCredentials: true });

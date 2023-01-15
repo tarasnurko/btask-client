@@ -1,6 +1,7 @@
 import { Lead } from "@/data/lead";
 import { Task } from "@/data/task";
 import axios, { AxiosError } from "axios";
+import { baseUrl } from "..";
 
 export type GetNextTasksError = AxiosError<{ message?: string }>;
 
@@ -12,7 +13,7 @@ export interface GetNextTasks {
   jwt?: string;
 }
 
-const url = "http://127.0.0.1:8080/api/tasks";
+const url = `${baseUrl}/tasks`;
 
 export const getNextTasks = async ({
   jwt,

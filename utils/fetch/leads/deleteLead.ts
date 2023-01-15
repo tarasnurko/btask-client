@@ -1,6 +1,7 @@
 import axios from "axios";
+import { baseUrl } from "../";
 
-const url = "http://127.0.0.1:8080/api/leads";
+const url = `${baseUrl}/leads`;
 
 export const deleteLead = async (leadId: number): Promise<void> => {
   return axios.delete(`${url}/${leadId}`, {

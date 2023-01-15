@@ -1,5 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { Task, TaskStatus } from "@/data/task";
+import { baseUrl } from "../";
 
 export type ChangeLeadTasksError = AxiosError<{ message?: string }>;
 
@@ -8,7 +9,7 @@ export interface ChangeLeadTasks {
   leadId: string | number;
 }
 
-const url = "http://127.0.0.1:8080/api/leads";
+const url = `${baseUrl}/leads`;
 
 export const changeLeadTasks = async ({
   tasks,

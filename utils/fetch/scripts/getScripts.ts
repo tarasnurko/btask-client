@@ -2,6 +2,7 @@ import { Lead } from "@/data/lead";
 import { Script } from "@/data/script";
 import { Task } from "@/data/task";
 import axios, { AxiosError } from "axios";
+import { baseUrl } from "../";
 
 export type GetScriptsError = AxiosError<{ message?: string }>;
 
@@ -9,7 +10,7 @@ export interface GetScripts {
   jwt?: string;
 }
 
-const url = "http://127.0.0.1:8080/api/scripts";
+const url = `${baseUrl}/scripts`;
 
 export const getScripts = async ({ jwt }: GetScripts): Promise<Script[]> => {
   if (!jwt) {

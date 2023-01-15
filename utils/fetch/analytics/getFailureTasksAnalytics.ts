@@ -1,6 +1,6 @@
 import { FailureTask } from "@/data/analytics";
-import { Lead } from "@/data/lead";
 import axios, { AxiosError } from "axios";
+import { baseUrl } from "..";
 
 export type GetFailureTasksAnalyticsError = AxiosError<{ message?: string }>;
 
@@ -13,7 +13,7 @@ export interface GetFailureTasksAnalytics {
   jwt: string;
 }
 
-const url = "http://127.0.0.1:8080/api/analytics/failure";
+const url = `${baseUrl}/analytics/failure`;
 
 export const getFailureTasksAnalytics = async ({
   jwt,
