@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { Task, TaskStatus } from "@/data/task";
-import { baseUrl } from "../";
+import { baseUrl } from "../baseUrl";
 
 export type ChangeLeadTasksError = AxiosError<{ message?: string }>;
 

@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { Script, ScriptSource } from "@/data/script";
-import { baseUrl } from "../";
+import { baseUrl } from "../baseUrl";
 
 export type CreateScriptError = AxiosError<{ message?: string }>;
 

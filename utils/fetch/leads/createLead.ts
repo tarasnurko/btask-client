@@ -1,7 +1,7 @@
 import axios from "axios";
 import { CreateLeadForm } from "@/epic/forms/create-lead-form/data";
 import { Lead } from "@/data/lead";
-import { baseUrl } from "../";
+import { baseUrl } from "../baseUrl";
 
 const url = `${baseUrl}/leads`;
 

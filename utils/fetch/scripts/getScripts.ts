@@ -1,8 +1,6 @@
-import { Lead } from "@/data/lead";
 import { Script } from "@/data/script";
-import { Task } from "@/data/task";
 import axios, { AxiosError } from "axios";
-import { baseUrl } from "../";
+import { baseUrl } from "../baseUrl";
 
 export type GetScriptsError = AxiosError<{ message?: string }>;
 

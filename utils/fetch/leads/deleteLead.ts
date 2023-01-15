@@ -1,5 +1,5 @@
 import axios from "axios";
-import { baseUrl } from "../";
+import { baseUrl } from "../baseUrl";
 
 const url = `${baseUrl}/leads`;
 

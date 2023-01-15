@@ -1,5 +1,5 @@
 import axios, { AxiosError } from "axios";
-import { baseUrl } from "../";
+import { baseUrl } from "../baseUrl";
 
 export type DeleteScriptError = AxiosError<{ message?: string }>;
 

@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { Auth } from "@/data/auth";
-import { baseUrl } from "../";
+import { baseUrl } from "../baseUrl";
 
 export type LoginError = AxiosError<{ message: string }>;
 

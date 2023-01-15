@@ -1,6 +1,6 @@
 import { FailureTask } from "@/data/analytics";
 import axios, { AxiosError } from "axios";
-import { baseUrl } from "..";
+import { baseUrl } from "../baseUrl";
 
 export type GetFailureTasksAnalyticsError = AxiosError<{ message?: string }>;
 
