@@ -27,6 +27,7 @@ export const catchAuth = async <T = unknown>(
       props: await callback(jwt),
     };
   } catch (err: unknown) {
+    console.log(err);
     if (
       err instanceof AxiosError &&
       err.response &&
