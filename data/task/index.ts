@@ -27,7 +27,7 @@ export interface Task {
   order: number;
   text: TaskText;
   status: TaskStatus;
-  createdAt: string;
+  updatedAt: string;
   userId: number;
   leadId: number;
 }

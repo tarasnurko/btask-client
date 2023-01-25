@@ -111,7 +111,7 @@ const Component: React.FC = () => {
     },
     {
       title: "Hold Days",
-      dataIndex: "createdAt",
+      dataIndex: "updatedAt",
       key: "holdDays",
       render: (value: string) => {
         const difference = Math.floor(
@@ -129,7 +129,7 @@ const Component: React.FC = () => {
         return <Text type="danger">{difference}</Text>;
       },
       sorter: (a, b) =>
-        new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(),
+        new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime(),
     },
   ];
 
